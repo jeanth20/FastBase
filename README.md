@@ -2,6 +2,8 @@
 
 A template project using FastAPI, PostgreSQL, and Jinja templates that can serve as a base for quickly building web applications.
 
+![Screenshot 2025-05-16 185146](https://github.com/user-attachments/assets/72f52eb8-2bd5-4547-9636-f11221330735)
+
 ## Features
 
 - User authentication (login, register, logout)
