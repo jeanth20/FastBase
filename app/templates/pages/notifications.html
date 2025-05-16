@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+
+{% block title %}Notifications - FastBase{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    {% include "components/sidebar.html" %}
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-content">
+        <div class="dashboard">
+            <div class="notifications-header">
+                <h1>Notifications</h1>
+                {% if notifications %}
+                <button id="markAllAsRead" class="btn">
+                    <i class='bx bx-check-double'></i> Mark All as Read
+                </button>
+                {% endif %}
+            </div>
+
+            <div class="notifications-list">
+                {% if notifications %}
+                    {% for notification in notifications %}
+                    <div class="notification-item {% if not notification.is_read %}unread{% endif %}" data-id="{{ notification.id }}">
+                        <div class="notification-icon">
+                            {% if notification.type == "info" %}
+                                <i class='bx bx-info-circle' style="color: var(--main-color);"></i>
+                            {% elif notification.type == "success" %}
+                                <i class='bx bx-check-circle' style="color: var(--success-color);"></i>
+                            {% elif notification.type == "warning" %}
+                                <i class='bx bx-error' style="color: #f39c12;"></i>
+                            {% elif notification.type == "error" %}
+                                <i class='bx bx-x-circle' style="color: var(--danger-color);"></i>
+                            {% else %}
+                                <i class='bx bx-bell'></i>
+                            {% endif %}
+                        </div>
+                        <div class="notification-content">
+                            <div class="notification-title">{{ notification.title }}</div>
+                            <div class="notification-message">{{ notification.message }}</div>
+                            <div class="notification-time">{{ notification.created_at.strftime('%Y-%m-%d %H:%M') }}</div>
+                        </div>
+                        <div class="notification-actions">
+                            {% if not notification.is_read %}
+                            <button class="mark-read-btn" data-id="{{ notification.id }}">
+                                <i class='bx bx-check'></i>
+                            </button>
+                            {% endif %}
+                            {% if notification.link %}
+                            <a href="{{ notification.link }}" class="notification-link">
+                                <i class='bx bx-link-external'></i>
+                            </a>
+                            {% endif %}
+                            <button class="delete-notification-btn" data-id="{{ notification.id }}">
+                                <i class='bx bx-trash'></i>
+                            </button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="empty-notifications">
+                        <i class='bx bx-bell-off'></i>
+                        <p>You don't have any notifications yet.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mark single notification as read
+        const markReadButtons = document.querySelectorAll('.mark-read-btn');
+        markReadButtons.forEach(button => {
+            button.addEventListener('click', async function() {
+                const notificationId = this.getAttribute('data-id');
+                const response = await fetch(`/notifications/api/${notificationId}/read`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    // Update UI
+                    const notificationItem = document.querySelector(`.notification-item[data-id="${notificationId}"]`);
+                    notificationItem.classList.remove('unread');
+                    this.remove();
+                    
+                    // Update notification count in sidebar if it exists
+                    updateNotificationCount();
+                }
+            });
+        });
+        
+        // Mark all notifications as read
+        const markAllButton = document.getElementById('markAllAsRead');
+        if (markAllButton) {
+            markAllButton.addEventListener('click', async function() {
+                const response = await fetch('/notifications/api/read-all', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    // Update UI
+                    document.querySelectorAll('.notification-item.unread').forEach(item => {
+                        item.classList.remove('unread');
+                    });
+                    
+                    document.querySelectorAll('.mark-read-btn').forEach(btn => {
+                        btn.remove();
+                    });
+                    
+                    // Update notification count in sidebar if it exists
+                    updateNotificationCount();
+                }
+            });
+        }
+        
+        // Delete notification
+        const deleteButtons = document.querySelectorAll('.delete-notification-btn');
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', async function() {
+                const notificationId = this.getAttribute('data-id');
+                const response = await fetch(`/notifications/api/${notificationId}`, {
+                    method: 'DELETE'
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    // Remove notification from UI
+                    const notificationItem = document.querySelector(`.notification-item[data-id="${notificationId}"]`);
+                    notificationItem.remove();
+                    
+                    // If no notifications left, show empty state
+                    if (document.querySelectorAll('.notification-item').length === 0) {
+                        const emptyState = document.createElement('div');
+                        emptyState.className = 'empty-notifications';
+                        emptyState.innerHTML = `
+                            <i class='bx bx-bell-off'></i>
+                            <p>You don't have any notifications yet.</p>
+                        `;
+                        document.querySelector('.notifications-list').appendChild(emptyState);
+                        
+                        // Hide mark all as read button
+                        if (markAllButton) {
+                            markAllButton.style.display = 'none';
+                        }
+                    }
+                }
+            });
+        });
+        
+        // Function to update notification count in sidebar
+        function updateNotificationCount() {
+            const notificationBadge = document.querySelector('.notification-badge');
+            if (notificationBadge) {
+                const unreadCount = document.querySelectorAll('.notification-item.unread').length;
+                if (unreadCount > 0) {
+                    notificationBadge.textContent = unreadCount;
+                    notificationBadge.style.display = 'flex';
+                } else {
+                    notificationBadge.style.display = 'none';
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}

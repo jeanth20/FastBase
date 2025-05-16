@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - FastBase{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    {% include "components/sidebar.html" %}
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-content">
+        <div class="dashboard">
+            <h1>Welcome, <span style="color: var(--main-color);">{{ user.username }}</span>!</h1>
+
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <h3><i class='bx bx-calendar'></i> Account Created</h3>
+                    <p>{{ user.created_at.strftime('%Y-%m-%d') if user.created_at else 'N/A' }}</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3><i class='bx bx-envelope'></i> Email</h3>
+                    <p>{{ user.email }}</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3><i class='bx bx-check-circle'></i> Status</h3>
+                    <p>{{ "Active" if user.is_active else "Inactive" }}</p>
+                </div>
+            </div>
+
+            <div class="recent-activity">
+                <h2><i class='bx bx-history'></i> Recent Activity</h2>
+
+                {% if activities %}
+                    <table class="activity-table">
+                        <thead>
+                            <tr>
+                                <th>Activity</th>
+                                <th>Endpoint</th>
+                                <th>IP Address</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for activity in activities %}
+                                <tr>
+                                    <td>
+                                        {% if activity.activity_type == "login" %}
+                                            <i class='bx bx-log-in' style="color: var(--main-color);"></i>
+                                        {% elif activity.activity_type == "logout" %}
+                                            <i class='bx bx-log-out' style="color: var(--danger-color);"></i>
+                                        {% else %}
+                                            <i class='bx bx-show' style="color: var(--secondary-color);"></i>
+                                        {% endif %}
+                                        {{ activity.activity_type }}
+                                    </td>
+                                    <td>{{ activity.endpoint }}</td>
+                                    <td>{{ activity.ip_address }}</td>
+                                    <td>{{ activity.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p>No recent activity.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

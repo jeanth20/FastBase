@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+
+{% block title %}Admin - User Detail{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    {% include "components/sidebar.html" %}
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-content">
+        <div class="dashboard">
+<div class="back-link">
+    <a href="/admin/users" class="btn btn-sm">
+        <i class='bx bx-arrow-back'></i> Back to Users
+    </a>
+</div>
+
+<h1>User Details: {{ target_user.username }}</h1>
+
+{% if error %}
+<div class="alert alert-error">
+    {{ error }}
+</div>
+{% endif %}
+
+{% if success %}
+<div class="alert alert-success">
+    {{ success }}
+</div>
+{% endif %}
+
+<div class="user-detail-container">
+    <div class="user-info-section">
+        <div class="stat-card">
+            <h3><i class='bx bxs-user'></i> User Information</h3>
+
+            <div class="user-info-item">
+                <span class="info-label">Username:</span>
+                <span class="info-value">{{ target_user.username }}</span>
+            </div>
+
+            <div class="user-info-item">
+                <span class="info-label">Email:</span>
+                <span class="info-value">{{ target_user.email }}</span>
+            </div>
+
+            <div class="user-info-item">
+                <span class="info-label">Created:</span>
+                <span class="info-value">{{ target_user.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</span>
+            </div>
+
+            <div class="user-info-item">
+                <span class="info-label">Last Updated:</span>
+                <span class="info-value">{{ target_user.updated_at.strftime('%Y-%m-%d %H:%M:%S') }}</span>
+            </div>
+
+            <div class="user-info-item">
+                <span class="info-label">Status:</span>
+                <span class="info-value">
+                    {% if target_user.is_active %}
+                    <span class="badge success">Active</span>
+                    {% else %}
+                    <span class="badge danger">Inactive</span>
+                    {% endif %}
+                </span>
+            </div>
+
+            <div class="user-info-item">
+                <span class="info-label">Role:</span>
+                <span class="info-value">
+                    {% if target_user.is_admin %}
+                    <span class="badge primary">Admin</span>
+                    {% else %}
+                    <span class="badge">User</span>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="user-actions-section">
+        {% if target_user.id != user.id %}
+        <div class="action-cards">
+            <div class="stat-card">
+                <h3><i class='bx bxs-crown'></i> Admin Status</h3>
+                <p>
+                    {% if target_user.is_admin %}
+                    Remove admin privileges from this user.
+                    {% else %}
+                    Grant admin privileges to this user.
+                    {% endif %}
+                </p>
+                <form method="post" action="/admin/users/{{ target_user.id }}/toggle-admin">
+                    <button type="submit" class="btn {% if target_user.is_admin %}btn-danger{% else %}btn-primary{% endif %}">
+                        {% if target_user.is_admin %}
+                        <i class='bx bx-shield-x'></i> Remove Admin
+                        {% else %}
+                        <i class='bx bx-shield-plus'></i> Make Admin
+                        {% endif %}
+                    </button>
+                </form>
+            </div>
+
+            <div class="stat-card">
+                <h3><i class='bx bxs-user-check'></i> Account Status</h3>
+                <p>
+                    {% if target_user.is_active %}
+                    Deactivate this user account.
+                    {% else %}
+                    Activate this user account.
+                    {% endif %}
+                </p>
+                <form method="post" action="/admin/users/{{ target_user.id }}/toggle-active">
+                    <button type="submit" class="btn {% if target_user.is_active %}btn-danger{% else %}btn-success{% endif %}">
+                        {% if target_user.is_active %}
+                        <i class='bx bx-user-x'></i> Deactivate User
+                        {% else %}
+                        <i class='bx bx-user-check'></i> Activate User
+                        {% endif %}
+                    </button>
+                </form>
+            </div>
+        </div>
+        {% else %}
+        <div class="stat-card">
+            <h3><i class='bx bx-info-circle'></i> Note</h3>
+            <p>You cannot modify your own admin or active status.</p>
+        </div>
+        {% endif %}
+
+        <div class="recent-activity">
+            <h2><i class='bx bx-history'></i> Recent Activity</h2>
+
+            <table class="activity-table">
+                <thead>
+                    <tr>
+                        <th>Activity</th>
+                        <th>Endpoint</th>
+                        <th>IP Address</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for activity in activities %}
+                    <tr>
+                        <td>
+                            {% if activity.activity_type == "login" %}
+                                <i class='bx bx-log-in' style="color: var(--main-color);"></i>
+                            {% elif activity.activity_type == "logout" %}
+                                <i class='bx bx-log-out' style="color: var(--danger-color);"></i>
+                            {% else %}
+                                <i class='bx bx-show' style="color: var(--secondary-color);"></i>
+                            {% endif %}
+                            {{ activity.activity_type }}
+                        </td>
+                        <td>{{ activity.endpoint }}</td>
+                        <td>{{ activity.ip_address }}</td>
+                        <td>{{ activity.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Login - FastBase{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <h1>Login to <span style="color: var(--main-color);">FastBase</span></h1>
+
+    {% if request.query_params.get("registered") == "true" %}
+        <div class="alert alert-success">
+            Registration successful! Please login with your credentials.
+        </div>
+    {% endif %}
+
+    {% if error %}
+        <div class="alert alert-error">
+            {{ error }}
+        </div>
+    {% endif %}
+
+    <form id="loginForm" method="post" action="/auth/login">
+        <!-- CSRF token temporarily removed for debugging -->
+        <!-- <input type="hidden" name="csrf_token" value="{{ request.cookies.get('csrf_token', '') }}"> -->
+
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn">Login</button>
+        </div>
+    </form>
+
+    <script>
+        // Add form submission handler for debugging
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            console.log('Form submitted');
+
+            // Log form data for debugging
+            const formData = new FormData(document.getElementById('loginForm'));
+            for (let pair of formData.entries()) {
+                console.log(pair[0] + ': ' + (pair[0] === 'password' ? '********' : pair[1]));
+            }
+
+            // Don't prevent default - let the form submit normally
+        });
+    </script>
+
+    <div class="auth-links">
+        <p>Don't have an account? <a href="/auth/register">Register</a></p>
+    </div>
+</div>
+{% endblock %}

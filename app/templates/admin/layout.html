@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="/static/css/admin.css">
+{% endblock %}
+
+{% block content %}
+<div class="admin-dashboard-container">
+    <!-- Sidebar -->
+    <div class="admin-sidebar" id="adminSidebar">
+        <div class="sidebar-header">
+            <h3>Admin Panel</h3>
+            <button class="toggle-btn" id="toggleAdminSidebar">
+                <i class='bx bx-menu'></i>
+            </button>
+        </div>
+
+        <div class="sidebar-menu">
+            <ul>
+                <li>
+                    <a href="/admin/dashboard" class="{% if request.url.path == '/admin/dashboard' %}active{% endif %}">
+                        <i class='bx bxs-dashboard'></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/users" class="{% if '/admin/users' in request.url.path %}active{% endif %}">
+                        <i class='bx bxs-user'></i>
+                        <span>Users</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/create-admin" class="{% if request.url.path == '/admin/create-admin' %}active{% endif %}">
+                        <i class='bx bxs-user-plus'></i>
+                        <span>Create Admin</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="sidebar-footer">
+            <a href="/dashboard" style="color: #2470dc; display: flex; align-items: center;">
+                <i class='bx bx-arrow-back' style="margin-right: 10px;"></i>
+                <span>Back to Dashboard</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Mobile toggle button -->
+    <div class="mobile-toggle" id="adminMobileToggle">
+        <i class='bx bx-menu'></i>
+    </div>
+
+    <!-- Overlay for mobile -->
+    <div class="sidebar-overlay" id="adminSidebarOverlay"></div>
+
+    <!-- Main content -->
+    <div class="admin-content">
+        {% block admin_content %}{% endblock %}
+    </div>
+</div>
+
+{% block admin_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Admin sidebar toggle
+        const toggleBtn = document.getElementById('toggleAdminSidebar');
+        const sidebar = document.getElementById('adminSidebar');
+        const adminContent = document.querySelector('.admin-content');
+        const sidebarOverlay = document.getElementById('adminSidebarOverlay');
+        const mobileToggle = document.getElementById('adminMobileToggle');
+
+        if (toggleBtn && sidebar && adminContent) {
+            toggleBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('collapsed');
+                adminContent.classList.toggle('expanded');
+            });
+        }
+
+        // Mobile sidebar toggle
+        if (mobileToggle && sidebar && sidebarOverlay) {
+            mobileToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+                sidebarOverlay.classList.toggle('active');
+            });
+
+            sidebarOverlay.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+                sidebarOverlay.classList.remove('active');
+            });
+        }
+    });
+</script>
+{% endblock %}
+
+{% endblock %}

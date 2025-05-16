@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}FastBase{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header>
+        <a href="/" class="logo">Fast<span>Base</span></a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+
+        <ul class="navbar">
+            <li><a href="/">Home</a></li>
+            {% if request.cookies.get("access_token") %}
+                <li><a href="/dashboard">Dashboard</a></li>
+                {% if user is defined and user.is_admin %}
+                    <li><a href="/admin/dashboard">Admin</a></li>
+                {% endif %}
+                <li><a href="/auth/logout">Logout</a></li>
+            {% else %}
+                <li><a href="/auth/login">Login</a></li>
+                <li><a href="/auth/register">Register</a></li>
+            {% endif %}
+            <li>
+                <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Toggle dark mode">
+                    <i class="bx bx-moon"></i>
+                </button>
+            </li>
+        </ul>
+    </header>
+
+    {% block content %}{% endblock %}
+
+    <div class="copyright">
+        <p>&copy; {{ now().year }} <span>FastBase</span>. All Rights Reserved.</p>
+    </div>
+
+    <script src="/static/js/script.js"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

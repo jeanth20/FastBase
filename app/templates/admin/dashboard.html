@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    {% include "components/sidebar.html" %}
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-content">
+        <div class="dashboard">
+<h1>Admin Dashboard</h1>
+
+<div class="dashboard-stats">
+    <div class="stat-card">
+        <h3><i class='bx bxs-user-account'></i> Total Users</h3>
+        <p>{{ user_count }}</p>
+        <a href="/admin/users" class="btn">Manage Users</a>
+    </div>
+
+    <div class="stat-card">
+        <h3><i class='bx bxs-crown'></i> Admin Users</h3>
+        <p>{{ admin_count if admin_count is defined else 'N/A' }}</p>
+    </div>
+
+    <div class="stat-card">
+        <h3><i class='bx bx-plus-circle'></i> Create Admin</h3>
+        <p>Add new administrator</p>
+        <a href="/admin/create-admin" class="btn">Create Admin</a>
+    </div>
+</div>
+
+<div class="recent-activity">
+    <h2><i class='bx bxs-user-detail'></i> Recent Users</h2>
+
+    <table class="activity-table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Created</th>
+                <th>Admin</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in recent_users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.created_at.strftime('%Y-%m-%d') }}</td>
+                <td>
+                    {% if user.is_admin %}
+                    <span class="badge success">Yes</span>
+                    {% else %}
+                    <span class="badge">No</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="/admin/users/{{ user.id }}" class="btn btn-sm">View</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div style="text-align: right; margin-top: 15px;">
+        <a href="/admin/users" class="btn">View All Users</a>
+    </div>
+</div>
+
+<div class="recent-activity">
+    <h2><i class='bx bx-history'></i> Recent Activity</h2>
+
+    <table class="activity-table">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Activity</th>
+                <th>Endpoint</th>
+                <th>IP Address</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for activity in recent_activities %}
+            <tr>
+                <td>{{ activity.user.username }}</td>
+                <td>
+                    {% if activity.activity_type == "login" %}
+                        <i class='bx bx-log-in' style="color: var(--main-color);"></i>
+                    {% elif activity.activity_type == "logout" %}
+                        <i class='bx bx-log-out' style="color: var(--danger-color);"></i>
+                    {% else %}
+                        <i class='bx bx-show' style="color: var(--secondary-color);"></i>
+                    {% endif %}
+                    {{ activity.activity_type }}
+                </td>
+                <td>{{ activity.endpoint }}</td>
+                <td>{{ activity.ip_address }}</td>
+                <td>{{ activity.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

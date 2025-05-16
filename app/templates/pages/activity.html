@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block title %}Activity Log - FastBase{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3>Dashboard</h3>
+            <button class="toggle-btn">
+                <i class='bx bx-menu'></i>
+            </button>
+        </div>
+
+        <div class="sidebar-menu">
+            <ul>
+                <li>
+                    <a href="/dashboard">
+                        <i class='bx bxs-dashboard'></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/profile">
+                        <i class='bx bxs-user'></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/activity">
+                        <i class='bx bx-history'></i>
+                        <span>Activity Log</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/components">
+                        <i class='bx bx-cube'></i>
+                        <span>UI Components</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="sidebar-footer">
+            <a href="/auth/logout" style="color: var(--danger-color); display: flex; align-items: center;">
+                <i class='bx bx-log-out' style="margin-right: 10px;"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Mobile toggle button -->
+    <div class="mobile-toggle">
+        <i class='bx bx-menu'></i>
+    </div>
+
+    <!-- Overlay for mobile -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-content">
+        <div class="dashboard">
+            <h1>Activity <span style="color: var(--main-color);">Log</span></h1>
+
+            <div class="recent-activity">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h2><i class='bx bx-history'></i> Your Activities</h2>
+
+                    <div>
+                        <form method="get" action="/activity" style="display: flex; gap: 10px;">
+                            <select name="activity_type" style="padding: 8px; border-radius: 4px; border: 1px solid #ddd;">
+                                <option value="">All Activities</option>
+                                <option value="login" {% if activity_type == 'login' %}selected{% endif %}>Login</option>
+                                <option value="logout" {% if activity_type == 'logout' %}selected{% endif %}>Logout</option>
+                                <option value="page_view" {% if activity_type == 'page_view' %}selected{% endif %}>Page View</option>
+                            </select>
+                            <button type="submit" class="btn" style="padding: 8px 12px;">Filter</button>
+                        </form>
+                    </div>
+                </div>
+
+                {% if activities %}
+                    <table class="activity-table">
+                        <thead>
+                            <tr>
+                                <th>Activity</th>
+                                <th>Endpoint</th>
+                                <th>IP Address</th>
+                                <th>User Agent</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for activity in activities %}
+                                <tr>
+                                    <td>
+                                        {% if activity.activity_type == "login" %}
+                                            <i class='bx bx-log-in' style="color: var(--main-color);"></i>
+                                        {% elif activity.activity_type == "logout" %}
+                                            <i class='bx bx-log-out' style="color: var(--danger-color);"></i>
+                                        {% else %}
+                                            <i class='bx bx-show' style="color: var(--secondary-color);"></i>
+                                        {% endif %}
+                                        {{ activity.activity_type }}
+                                    </td>
+                                    <td>{{ activity.endpoint }}</td>
+                                    <td>{{ activity.ip_address }}</td>
+                                    <td>{{ activity.user_agent[:30] }}{% if activity.user_agent|length > 30 %}...{% endif %}</td>
+                                    <td>{{ activity.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <!-- Pagination -->
+                    {% if total_pages > 1 %}
+                        <div style="margin-top: 20px; display: flex; justify-content: center;">
+                            <div style="display: flex; gap: 5px;">
+                                {% if page > 1 %}
+                                    <a href="?page={{ page - 1 }}{% if activity_type %}&activity_type={{ activity_type }}{% endif %}" class="btn" style="padding: 5px 10px;">Previous</a>
+                                {% endif %}
+
+                                {% for p in range(1, total_pages + 1) %}
+                                    {% if p == page %}
+                                        <span class="btn" style="padding: 5px 10px; background-color: var(--dark-color);">{{ p }}</span>
+                                    {% else %}
+                                        <a href="?page={{ p }}{% if activity_type %}&activity_type={{ activity_type }}{% endif %}" class="btn" style="padding: 5px 10px;">{{ p }}</a>
+                                    {% endif %}
+                                {% endfor %}
+
+                                {% if page < total_pages %}
+                                    <a href="?page={{ page + 1 }}{% if activity_type %}&activity_type={{ activity_type }}{% endif %}" class="btn" style="padding: 5px 10px;">Next</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% else %}
+                    <p>No activities found.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

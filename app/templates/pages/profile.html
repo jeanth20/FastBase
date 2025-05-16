@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Profile - FastBase{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    {% include "components/sidebar.html" %}
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-content">
+        <div class="dashboard">
+            <h1>Your <span style="color: var(--main-color);">Profile</span></h1>
+
+            {% if success %}
+                <div class="alert alert-success">
+                    {{ success }}
+                </div>
+            {% endif %}
+
+            {% if error %}
+                <div class="alert alert-error">
+                    {{ error }}
+                </div>
+            {% endif %}
+
+            <div class="profile-section">
+                <h2><i class='bx bxs-user-detail'></i> Personal Information</h2>
+
+                <div class="profile-form">
+                    <form method="post" action="/profile">
+                        <input type="hidden" name="csrf_token" value="{{ request.cookies.get('csrf_token', '') }}">
+
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" value="{{ user.username }}" readonly>
+                            <small>Username cannot be changed</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" value="{{ user.email }}">
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn">Update Profile</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="profile-section">
+                <h2><i class='bx bxs-lock-alt'></i> Change Password</h2>
+
+                <div class="profile-form">
+                    <form method="post" action="/change-password">
+                        <input type="hidden" name="csrf_token" value="{{ request.cookies.get('csrf_token', '') }}">
+
+                        <div class="form-group">
+                            <label for="current_password">Current Password</label>
+                            <input type="password" id="current_password" name="current_password" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="new_password">New Password</label>
+                            <input type="password" id="new_password" name="new_password" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirm_password">Confirm New Password</label>
+                            <input type="password" id="confirm_password" name="confirm_password" required>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn" style="background-color: var(--secondary-color);">Change Password</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

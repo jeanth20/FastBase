@@ -1,0 +1,1994 @@
+{% extends "base.html" %}
+
+{% block title %}UI Components - FastBase{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3>Components</h3>
+            <button class="toggle-btn">
+                <i class='bx bx-menu'></i>
+            </button>
+        </div>
+
+        <div class="sidebar-menu">
+            <ul>
+                <li>
+                    <a href="#typography">
+                        <i class='bx bx-text'></i>
+                        <span>Typography</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#buttons">
+                        <i class='bx bx-radio-circle'></i>
+                        <span>Buttons</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#icons">
+                        <i class='bx bx-star'></i>
+                        <span>Icons</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#alerts">
+                        <i class='bx bx-bell'></i>
+                        <span>Alerts</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#cards">
+                        <i class='bx bx-card'></i>
+                        <span>Cards</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#tables">
+                        <i class='bx bx-table'></i>
+                        <span>Tables</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#forms">
+                        <i class='bx bx-list-check'></i>
+                        <span>Forms</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#grid">
+                        <i class='bx bx-grid-alt'></i>
+                        <span>Grid System</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#modals">
+                        <i class='bx bx-window-alt'></i>
+                        <span>Modals</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#sweet-alerts">
+                        <i class='bx bx-message-square-detail'></i>
+                        <span>Sweet Alerts</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#widgets">
+                        <i class='bx bx-widget'></i>
+                        <span>Widgets</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#charts">
+                        <i class='bx bx-line-chart'></i>
+                        <span>Charts</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#calendar">
+                        <i class='bx bx-calendar'></i>
+                        <span>Calendar</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="sidebar-footer">
+            <a href="/dashboard" style="color: var(--main-color); display: flex; align-items: center;">
+                <i class='bx bx-arrow-back' style="margin-right: 10px;"></i>
+                <span>Back to Dashboard</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Mobile toggle button -->
+    <div class="mobile-toggle">
+        <i class='bx bx-menu'></i>
+    </div>
+
+    <!-- Overlay for mobile -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-content">
+        <div class="dashboard">
+            <h1>UI <span style="color: var(--main-color);">Components</span></h1>
+            <p>A comprehensive showcase of all UI components available in FastBase.</p>
+
+            <!-- Typography -->
+            <section id="typography" class="component-section">
+                <h2><i class='bx bx-text'></i> Typography</h2>
+
+                <div class="component-demo">
+                    <h1>Heading 1</h1>
+                    <h2>Heading 2</h2>
+                    <h3>Heading 3</h3>
+                    <h4>Heading 4</h4>
+                    <h5>Heading 5</h5>
+                    <h6>Heading 6</h6>
+
+                    <p>This is a paragraph with <strong>bold text</strong>, <em>italic text</em>, and <a href="#">a link</a>.</p>
+
+                    <blockquote>
+                        This is a blockquote. It can be used to highlight important information or quotes.
+                    </blockquote>
+
+                    <div class="code-block">
+                        <pre><code>// This is a code block
+function helloWorld() {
+    console.log("Hello, World!");
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Buttons -->
+            <section id="buttons" class="component-section">
+                <h2><i class='bx bx-radio-circle'></i> Buttons</h2>
+
+                <div class="component-demo">
+                    <h3>Basic Buttons</h3>
+                    <div class="button-group">
+                        <button class="btn">Default Button</button>
+                        <button class="btn btn-secondary">Secondary Button</button>
+                        <button class="btn btn-danger">Danger Button</button>
+                        <button class="btn btn-dark">Dark Button</button>
+                        <button class="btn btn-light">Light Button</button>
+                    </div>
+
+                    <h3 class="mt-4">Button Styles</h3>
+                    <div class="button-group">
+                        <button class="btn btn-outline">Outline Button</button>
+                        <button class="btn btn-rounded">Rounded Button</button>
+                        <button class="btn btn-flat">Flat Button</button>
+                        <button class="btn" disabled>Disabled Button</button>
+                    </div>
+
+                    <h3 class="mt-4">Button Sizes</h3>
+                    <div class="button-group">
+                        <button class="btn btn-sm">Small Button</button>
+                        <button class="btn">Default Size</button>
+                        <button class="btn btn-lg">Large Button</button>
+                    </div>
+
+                    <h3 class="mt-4">Icon Buttons</h3>
+                    <div class="button-group">
+                        <button class="btn"><i class='bx bx-plus'></i> Add Item</button>
+                        <button class="btn btn-secondary"><i class='bx bx-edit'></i> Edit</button>
+                        <button class="btn btn-danger"><i class='bx bx-trash'></i> Delete</button>
+                        <button class="btn btn-icon"><i class='bx bx-heart'></i></button>
+                        <button class="btn btn-icon btn-secondary"><i class='bx bx-bookmark'></i></button>
+                    </div>
+
+                    <h3 class="mt-4">Button Groups</h3>
+                    <div class="btn-group">
+                        <button class="btn">Left</button>
+                        <button class="btn">Middle</button>
+                        <button class="btn">Right</button>
+                    </div>
+
+                    <h3 class="mt-4">Sweet Alert Buttons</h3>
+                    <div class="button-group">
+                        <button class="btn" id="sweet-basic">Basic Alert</button>
+                        <button class="btn btn-secondary" id="sweet-success">Success Alert</button>
+                        <button class="btn btn-danger" id="sweet-error">Error Alert</button>
+                        <button class="btn btn-dark" id="sweet-confirm">Confirmation</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Icons -->
+            <section id="icons" class="component-section">
+                <h2><i class='bx bx-star'></i> Icons</h2>
+
+                <div class="component-demo">
+                    <div class="icon-grid">
+                        <div class="icon-item"><i class='bx bx-home'></i><span>bx-home</span></div>
+                        <div class="icon-item"><i class='bx bx-user'></i><span>bx-user</span></div>
+                        <div class="icon-item"><i class='bx bx-cog'></i><span>bx-cog</span></div>
+                        <div class="icon-item"><i class='bx bx-bell'></i><span>bx-bell</span></div>
+                        <div class="icon-item"><i class='bx bx-envelope'></i><span>bx-envelope</span></div>
+                        <div class="icon-item"><i class='bx bx-search'></i><span>bx-search</span></div>
+                        <div class="icon-item"><i class='bx bx-calendar'></i><span>bx-calendar</span></div>
+                        <div class="icon-item"><i class='bx bx-chart'></i><span>bx-chart</span></div>
+                        <div class="icon-item"><i class='bx bx-file'></i><span>bx-file</span></div>
+                        <div class="icon-item"><i class='bx bx-folder'></i><span>bx-folder</span></div>
+                        <div class="icon-item"><i class='bx bx-heart'></i><span>bx-heart</span></div>
+                        <div class="icon-item"><i class='bx bx-star'></i><span>bx-star</span></div>
+                        <div class="icon-item"><i class='bx bx-check'></i><span>bx-check</span></div>
+                        <div class="icon-item"><i class='bx bx-x'></i><span>bx-x</span></div>
+                        <div class="icon-item"><i class='bx bx-plus'></i><span>bx-plus</span></div>
+                        <div class="icon-item"><i class='bx bx-minus'></i><span>bx-minus</span></div>
+                        <div class="icon-item"><i class='bx bx-menu'></i><span>bx-menu</span></div>
+                        <div class="icon-item"><i class='bx bx-log-in'></i><span>bx-log-in</span></div>
+                        <div class="icon-item"><i class='bx bx-log-out'></i><span>bx-log-out</span></div>
+                        <div class="icon-item"><i class='bx bx-trash'></i><span>bx-trash</span></div>
+                    </div>
+                    <p class="mt-3">FastBase uses <a href="https://boxicons.com/" target="_blank">Boxicons</a> for icons. View the full collection at <a href="https://boxicons.com/cheatsheet" target="_blank">Boxicons Cheatsheet</a>.</p>
+                </div>
+            </section>
+
+            <!-- Alerts -->
+            <section id="alerts" class="component-section">
+                <h2><i class='bx bx-bell'></i> Alerts</h2>
+
+                <div class="component-demo">
+                    <div class="alert alert-success">
+                        <i class='bx bx-check-circle'></i> This is a success alert.
+                    </div>
+
+                    <div class="alert alert-error">
+                        <i class='bx bx-error-circle'></i> This is an error alert.
+                    </div>
+
+                    <div class="alert alert-warning">
+                        <i class='bx bx-error'></i> This is a warning alert.
+                    </div>
+
+                    <div class="alert alert-info">
+                        <i class='bx bx-info-circle'></i> This is an info alert.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cards -->
+            <section id="cards" class="component-section">
+                <h2><i class='bx bx-card'></i> Cards</h2>
+
+                <div class="component-demo">
+                    <div class="cards-grid">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Basic Card</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>This is a basic card with a header and body.</p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop" alt="Card image">
+                            </div>
+                            <div class="card-body">
+                                <h3>Card with Image</h3>
+                                <p>This card includes an image at the top.</p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <h3>Card with Footer</h3>
+                                <p>This card includes a footer with actions.</p>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-sm">Action</button>
+                                <button class="btn btn-sm" style="background-color: var(--secondary-color);">Another Action</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tables -->
+            <section id="tables" class="component-section">
+                <h2><i class='bx bx-table'></i> Tables</h2>
+
+                <div class="component-demo">
+                    <h3>Basic Table</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>John Doe</td>
+                                <td>john@example.com</td>
+                                <td>Admin</td>
+                                <td>
+                                    <button class="btn btn-sm"><i class='bx bx-edit'></i></button>
+                                    <button class="btn btn-sm" style="background-color: var(--danger-color);"><i class='bx bx-trash'></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Jane Smith</td>
+                                <td>jane@example.com</td>
+                                <td>User</td>
+                                <td>
+                                    <button class="btn btn-sm"><i class='bx bx-edit'></i></button>
+                                    <button class="btn btn-sm" style="background-color: var(--danger-color);"><i class='bx bx-trash'></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Bob Johnson</td>
+                                <td>bob@example.com</td>
+                                <td>User</td>
+                                <td>
+                                    <button class="btn btn-sm"><i class='bx bx-edit'></i></button>
+                                    <button class="btn btn-sm" style="background-color: var(--danger-color);"><i class='bx bx-trash'></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 class="mt-4">Striped Table</h3>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Laptop</td>
+                                <td>Electronics</td>
+                                <td>$999.99</td>
+                                <td>15</td>
+                                <td><span class="badge badge-success">In Stock</span></td>
+                            </tr>
+                            <tr>
+                                <td>Smartphone</td>
+                                <td>Electronics</td>
+                                <td>$699.99</td>
+                                <td>8</td>
+                                <td><span class="badge badge-success">In Stock</span></td>
+                            </tr>
+                            <tr>
+                                <td>Headphones</td>
+                                <td>Accessories</td>
+                                <td>$149.99</td>
+                                <td>0</td>
+                                <td><span class="badge badge-danger">Out of Stock</span></td>
+                            </tr>
+                            <tr>
+                                <td>Monitor</td>
+                                <td>Electronics</td>
+                                <td>$299.99</td>
+                                <td>3</td>
+                                <td><span class="badge badge-warning">Low Stock</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Forms -->
+            <section id="forms" class="component-section">
+                <h2><i class='bx bx-list-check'></i> Forms</h2>
+
+                <div class="component-demo">
+                    <div class="form-container">
+                        <h3>Basic Form</h3>
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" class="form-control" placeholder="Enter your name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" class="form-control" placeholder="Enter your email">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" class="form-control" placeholder="Enter your password">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" class="form-control" rows="4" placeholder="Enter your message"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Gender</label>
+                                <div class="form-check">
+                                    <input type="radio" id="male" name="gender" class="form-check-input">
+                                    <label for="male" class="form-check-label">Male</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" id="female" name="gender" class="form-check-input">
+                                    <label for="female" class="form-check-label">Female</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" id="other" name="gender" class="form-check-input">
+                                    <label for="other" class="form-check-label">Other</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Interests</label>
+                                <div class="form-check">
+                                    <input type="checkbox" id="coding" class="form-check-input">
+                                    <label for="coding" class="form-check-label">Coding</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="design" class="form-check-input">
+                                    <label for="design" class="form-check-label">Design</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="marketing" class="form-check-input">
+                                    <label for="marketing" class="form-check-label">Marketing</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <select id="country" class="form-control">
+                                    <option value="">Select a country</option>
+                                    <option value="us">United States</option>
+                                    <option value="ca">Canada</option>
+                                    <option value="uk">United Kingdom</option>
+                                    <option value="au">Australia</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input type="checkbox" id="terms" class="form-check-input">
+                                    <label for="terms" class="form-check-label">I agree to the terms and conditions</label>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn">Submit</button>
+                                <button type="reset" class="btn btn-outline">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="form-container mt-4">
+                        <h3>Inline Form</h3>
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search">
+                            </div>
+                            <button type="submit" class="btn">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Grid System -->
+            <section id="grid" class="component-section">
+                <h2><i class='bx bx-grid-alt'></i> Grid System</h2>
+
+                <div class="component-demo">
+                    <div class="grid-example">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="grid-box">col-12</div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="grid-box">col-6</div>
+                            </div>
+                            <div class="col-6">
+                                <div class="grid-box">col-6</div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="grid-box">col-4</div>
+                            </div>
+                            <div class="col-4">
+                                <div class="grid-box">col-4</div>
+                            </div>
+                            <div class="col-4">
+                                <div class="grid-box">col-4</div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="grid-box">col-3</div>
+                            </div>
+                            <div class="col-3">
+                                <div class="grid-box">col-3</div>
+                            </div>
+                            <div class="col-3">
+                                <div class="grid-box">col-3</div>
+                            </div>
+                            <div class="col-3">
+                                <div class="grid-box">col-3</div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="grid-box">col-8</div>
+                            </div>
+                            <div class="col-4">
+                                <div class="grid-box">col-4</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Modals -->
+            <section id="modals" class="component-section">
+                <h2><i class='bx bx-window-alt'></i> Modals</h2>
+
+                <div class="component-demo">
+                    <button class="btn modal-trigger" data-modal="modal1">Open Basic Modal</button>
+                    <button class="btn modal-trigger" data-modal="modal2" style="background-color: var(--secondary-color);">Open Form Modal</button>
+                    <button class="btn modal-trigger" data-modal="modal3" style="background-color: var(--danger-color);">Open Confirmation Modal</button>
+
+                    <!-- Basic Modal -->
+                    <div id="modal1" class="modal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>Basic Modal</h3>
+                                <span class="modal-close">&times;</span>
+                            </div>
+                            <div class="modal-body">
+                                <p>This is a basic modal dialog box. You can use it to display information to the user.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn modal-close">Close</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Modal -->
+                    <div id="modal2" class="modal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>Form Modal</h3>
+                                <span class="modal-close">&times;</span>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="modal-name">Name</label>
+                                        <input type="text" id="modal-name" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="modal-email">Email</label>
+                                        <input type="email" id="modal-email" class="form-control">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn" style="background-color: var(--secondary-color);">Submit</button>
+                                <button class="btn btn-outline modal-close">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Confirmation Modal -->
+                    <div id="modal3" class="modal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>Confirmation</h3>
+                                <span class="modal-close">&times;</span>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to delete this item? This action cannot be undone.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn" style="background-color: var(--danger-color);">Delete</button>
+                                <button class="btn btn-outline modal-close">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Widgets -->
+            <section id="widgets" class="component-section">
+                <h2><i class='bx bx-widget'></i> Widgets</h2>
+
+                <div class="component-demo">
+                    <div class="widgets-grid">
+                        <!-- Stats Widget -->
+                        <div class="widget">
+                            <div class="widget-header">
+                                <h3>Statistics</h3>
+                            </div>
+                            <div class="widget-body">
+                                <div class="stats-grid">
+                                    <div class="stat-item">
+                                        <div class="stat-icon" style="background-color: rgba(52, 152, 219, 0.2);">
+                                            <i class='bx bx-user' style="color: var(--main-color);"></i>
+                                        </div>
+                                        <div class="stat-info">
+                                            <h4>Users</h4>
+                                            <p>1,254</p>
+                                        </div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-icon" style="background-color: rgba(46, 204, 113, 0.2);">
+                                            <i class='bx bx-cart' style="color: var(--secondary-color);"></i>
+                                        </div>
+                                        <div class="stat-info">
+                                            <h4>Orders</h4>
+                                            <p>854</p>
+                                        </div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-icon" style="background-color: rgba(231, 76, 60, 0.2);">
+                                            <i class='bx bx-error' style="color: var(--danger-color);"></i>
+                                        </div>
+                                        <div class="stat-info">
+                                            <h4>Issues</h4>
+                                            <p>12</p>
+                                        </div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-icon" style="background-color: rgba(241, 196, 15, 0.2);">
+                                            <i class='bx bx-star' style="color: #f1c40f;"></i>
+                                        </div>
+                                        <div class="stat-info">
+                                            <h4>Reviews</h4>
+                                            <p>324</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Activity Widget -->
+                        <div class="widget">
+                            <div class="widget-header">
+                                <h3>Recent Activity</h3>
+                            </div>
+                            <div class="widget-body">
+                                <ul class="activity-list">
+                                    <li class="activity-item">
+                                        <div class="activity-icon">
+                                            <i class='bx bx-user-plus'></i>
+                                        </div>
+                                        <div class="activity-content">
+                                            <p><strong>John Doe</strong> registered a new account</p>
+                                            <span class="activity-time">5 minutes ago</span>
+                                        </div>
+                                    </li>
+                                    <li class="activity-item">
+                                        <div class="activity-icon">
+                                            <i class='bx bx-cart-add'></i>
+                                        </div>
+                                        <div class="activity-content">
+                                            <p><strong>Jane Smith</strong> placed a new order</p>
+                                            <span class="activity-time">15 minutes ago</span>
+                                        </div>
+                                    </li>
+                                    <li class="activity-item">
+                                        <div class="activity-icon">
+                                            <i class='bx bx-message-square-dots'></i>
+                                        </div>
+                                        <div class="activity-content">
+                                            <p><strong>Bob Johnson</strong> left a comment</p>
+                                            <span class="activity-time">1 hour ago</span>
+                                        </div>
+                                    </li>
+                                    <li class="activity-item">
+                                        <div class="activity-icon">
+                                            <i class='bx bx-like'></i>
+                                        </div>
+                                        <div class="activity-content">
+                                            <p><strong>Alice Williams</strong> liked a post</p>
+                                            <span class="activity-time">2 hours ago</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="widget-footer">
+                                <a href="#">View All Activity</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Charts -->
+            <section id="charts" class="component-section">
+                <h2><i class='bx bx-line-chart'></i> Charts</h2>
+
+                <div class="component-demo">
+                    <div class="charts-grid">
+                        <div class="chart-container">
+                            <h3>Line Chart</h3>
+                            <canvas id="lineChart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Bar Chart</h3>
+                            <canvas id="barChart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Pie Chart</h3>
+                            <canvas id="pieChart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Doughnut Chart</h3>
+                            <canvas id="doughnutChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sweet Alerts -->
+            <section id="sweet-alerts" class="component-section">
+                <h2><i class='bx bx-message-square-detail'></i> Sweet Alerts</h2>
+
+                <div class="component-demo">
+                    <p>SweetAlert2 is a beautiful, responsive, customizable and accessible replacement for JavaScript's popup boxes. Click the buttons below to see different types of alerts.</p>
+
+                    <div class="button-group mt-4">
+                        <button class="btn" id="sweet-basic-demo">Basic Alert</button>
+                        <button class="btn btn-secondary" id="sweet-success-demo">Success Alert</button>
+                        <button class="btn btn-danger" id="sweet-error-demo">Error Alert</button>
+                        <button class="btn btn-dark" id="sweet-confirm-demo">Confirmation Dialog</button>
+                    </div>
+
+                    <h3 class="mt-4">Custom Alerts</h3>
+                    <div class="button-group">
+                        <button class="btn" id="sweet-html">HTML Content</button>
+                        <button class="btn btn-secondary" id="sweet-position">Custom Position</button>
+                        <button class="btn btn-dark" id="sweet-image">With Image</button>
+                        <button class="btn btn-danger" id="sweet-timer">Auto Close</button>
+                    </div>
+
+                    <h3 class="mt-4">Input Types</h3>
+                    <div class="button-group">
+                        <button class="btn" id="sweet-text">Text Input</button>
+                        <button class="btn btn-secondary" id="sweet-email">Email Input</button>
+                        <button class="btn btn-dark" id="sweet-select">Select Input</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Calendar -->
+            <section id="calendar" class="component-section">
+                <h2><i class='bx bx-calendar'></i> Calendar</h2>
+
+                <div class="component-demo">
+                    <div class="calendar-container">
+                        <div class="calendar-header">
+                            <button class="btn btn-sm" id="prevMonth"><i class='bx bx-chevron-left'></i></button>
+                            <h3 id="currentMonth">June 2023</h3>
+                            <button class="btn btn-sm" id="nextMonth"><i class='bx bx-chevron-right'></i></button>
+                        </div>
+                        <div class="calendar-body">
+                            <table class="calendar-table">
+                                <thead>
+                                    <tr>
+                                        <th>Sun</th>
+                                        <th>Mon</th>
+                                        <th>Tue</th>
+                                        <th>Wed</th>
+                                        <th>Thu</th>
+                                        <th>Fri</th>
+                                        <th>Sat</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="calendarDays">
+                                    <!-- Calendar days will be generated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="calendar-footer">
+                            <button class="btn" id="todayBtn">Today</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Modal functionality
+        const modalTriggers = document.querySelectorAll('.modal-trigger');
+        const modalCloses = document.querySelectorAll('.modal-close');
+        const modals = document.querySelectorAll('.modal');
+
+        modalTriggers.forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const modalId = trigger.getAttribute('data-modal');
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.style.display = 'block';
+                }
+            });
+        });
+
+        modalCloses.forEach(close => {
+            close.addEventListener('click', () => {
+                const modal = close.closest('.modal');
+                if (modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+
+        window.addEventListener('click', (e) => {
+            modals.forEach(modal => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+
+        // Charts
+        // Line Chart
+        const lineCtx = document.getElementById('lineChart');
+        if (lineCtx) {
+            new Chart(lineCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Sales',
+                        data: [12, 19, 3, 5, 2, 3],
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.2)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Monthly Sales'
+                        }
+                    }
+                }
+            });
+        }
+
+        // Bar Chart
+        const barCtx = document.getElementById('barChart');
+        if (barCtx) {
+            new Chart(barCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Revenue',
+                        data: [12000, 19000, 3000, 5000, 2000, 3000],
+                        backgroundColor: [
+                            'rgba(52, 152, 219, 0.7)',
+                            'rgba(46, 204, 113, 0.7)',
+                            'rgba(231, 76, 60, 0.7)',
+                            'rgba(241, 196, 15, 0.7)',
+                            'rgba(155, 89, 182, 0.7)',
+                            'rgba(52, 73, 94, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(52, 152, 219, 1)',
+                            'rgba(46, 204, 113, 1)',
+                            'rgba(231, 76, 60, 1)',
+                            'rgba(241, 196, 15, 1)',
+                            'rgba(155, 89, 182, 1)',
+                            'rgba(52, 73, 94, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Monthly Revenue'
+                        }
+                    }
+                }
+            });
+        }
+
+        // Pie Chart
+        const pieCtx = document.getElementById('pieChart');
+        if (pieCtx) {
+            new Chart(pieCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Desktop', 'Mobile', 'Tablet'],
+                    datasets: [{
+                        data: [65, 30, 5],
+                        backgroundColor: [
+                            'rgba(52, 152, 219, 0.7)',
+                            'rgba(46, 204, 113, 0.7)',
+                            'rgba(231, 76, 60, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(52, 152, 219, 1)',
+                            'rgba(46, 204, 113, 1)',
+                            'rgba(231, 76, 60, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Device Usage'
+                        }
+                    }
+                }
+            });
+        }
+
+        // Doughnut Chart
+        const doughnutCtx = document.getElementById('doughnutChart');
+        if (doughnutCtx) {
+            new Chart(doughnutCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Chrome', 'Firefox', 'Safari', 'Edge', 'Other'],
+                    datasets: [{
+                        data: [45, 20, 15, 10, 10],
+                        backgroundColor: [
+                            'rgba(52, 152, 219, 0.7)',
+                            'rgba(46, 204, 113, 0.7)',
+                            'rgba(231, 76, 60, 0.7)',
+                            'rgba(241, 196, 15, 0.7)',
+                            'rgba(155, 89, 182, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(52, 152, 219, 1)',
+                            'rgba(46, 204, 113, 1)',
+                            'rgba(231, 76, 60, 1)',
+                            'rgba(241, 196, 15, 1)',
+                            'rgba(155, 89, 182, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Browser Usage'
+                        }
+                    }
+                }
+            });
+        }
+
+        // Calendar
+        const calendarDays = document.getElementById('calendarDays');
+        const currentMonthElement = document.getElementById('currentMonth');
+        const prevMonthBtn = document.getElementById('prevMonth');
+        const nextMonthBtn = document.getElementById('nextMonth');
+        const todayBtn = document.getElementById('todayBtn');
+
+        let currentDate = new Date();
+
+        function renderCalendar() {
+            if (!calendarDays) return;
+
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+
+            // Update month display
+            if (currentMonthElement) {
+                const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                currentMonthElement.textContent = `${monthNames[month]} ${year}`;
+            }
+
+            // Clear previous days
+            calendarDays.innerHTML = '';
+
+            // Get first day of month and last day of month
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
+
+            // Get day of week for first day (0 = Sunday, 6 = Saturday)
+            const firstDayIndex = firstDay.getDay();
+
+            // Get total days in month
+            const totalDays = lastDay.getDate();
+
+            // Create calendar rows
+            let date = 1;
+            for (let i = 0; i < 6; i++) {
+                // Create row
+                const row = document.createElement('tr');
+
+                // Create cells
+                for (let j = 0; j < 7; j++) {
+                    const cell = document.createElement('td');
+
+                    if (i === 0 && j < firstDayIndex) {
+                        // Empty cells before first day of month
+                        cell.textContent = '';
+                    } else if (date > totalDays) {
+                        // Empty cells after last day of month
+                        cell.textContent = '';
+                    } else {
+                        // Day cells
+                        cell.textContent = date;
+
+                        // Highlight today
+                        const today = new Date();
+                        if (date === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+                            cell.style.backgroundColor = 'var(--main-color)';
+                            cell.style.color = 'white';
+                            cell.style.borderRadius = '50%';
+                        }
+
+                        date++;
+                    }
+
+                    row.appendChild(cell);
+                }
+
+                calendarDays.appendChild(row);
+
+                // Stop if we've rendered all days
+                if (date > totalDays) {
+                    break;
+                }
+            }
+        }
+
+        // Initialize calendar
+        renderCalendar();
+
+        // Previous month button
+        if (prevMonthBtn) {
+            prevMonthBtn.addEventListener('click', () => {
+                currentDate.setMonth(currentDate.getMonth() - 1);
+                renderCalendar();
+            });
+        }
+
+        // Next month button
+        if (nextMonthBtn) {
+            nextMonthBtn.addEventListener('click', () => {
+                currentDate.setMonth(currentDate.getMonth() + 1);
+                renderCalendar();
+            });
+        }
+
+        // Today button
+        if (todayBtn) {
+            todayBtn.addEventListener('click', () => {
+                currentDate = new Date();
+                renderCalendar();
+            });
+        }
+
+        // SweetAlert examples - Button section
+        const sweetBasic = document.getElementById('sweet-basic');
+        if (sweetBasic) {
+            sweetBasic.addEventListener('click', () => {
+                Swal.fire({
+                    title: 'Hello!',
+                    text: 'This is a basic SweetAlert',
+                    icon: 'info',
+                    confirmButtonColor: 'var(--main-color)'
+                });
+            });
+        }
+
+        const sweetSuccess = document.getElementById('sweet-success');
+        if (sweetSuccess) {
+            sweetSuccess.addEventListener('click', () => {
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Your action was completed successfully',
+                    icon: 'success',
+                    confirmButtonColor: 'var(--secondary-color)'
+                });
+            });
+        }
+
+        const sweetError = document.getElementById('sweet-error');
+        if (sweetError) {
+            sweetError.addEventListener('click', () => {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Something went wrong',
+                    icon: 'error',
+                    confirmButtonColor: 'var(--danger-color)'
+                });
+            });
+        }
+
+        const sweetConfirm = document.getElementById('sweet-confirm');
+        if (sweetConfirm) {
+            sweetConfirm.addEventListener('click', () => {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: 'var(--danger-color)',
+                    cancelButtonColor: 'var(--dark-color)',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: 'Deleted!',
+                            text: 'Your file has been deleted.',
+                            icon: 'success',
+                            confirmButtonColor: 'var(--main-color)'
+                        });
+                    }
+                });
+            });
+        }
+
+        // SweetAlert examples - Sweet Alerts section
+        const sweetBasicDemo = document.getElementById('sweet-basic-demo');
+        if (sweetBasicDemo) {
+            sweetBasicDemo.addEventListener('click', () => {
+                Swal.fire({
+                    title: 'Information',
+                    text: 'This is a basic SweetAlert dialog',
+                    icon: 'info',
+                    confirmButtonColor: 'var(--main-color)'
+                });
+            });
+        }
+
+        const sweetSuccessDemo = document.getElementById('sweet-success-demo');
+        if (sweetSuccessDemo) {
+            sweetSuccessDemo.addEventListener('click', () => {
+                Swal.fire({
+                    title: 'Good job!',
+                    text: 'You clicked the button!',
+                    icon: 'success',
+                    confirmButtonColor: 'var(--secondary-color)'
+                });
+            });
+        }
+
+        const sweetErrorDemo = document.getElementById('sweet-error-demo');
+        if (sweetErrorDemo) {
+            sweetErrorDemo.addEventListener('click', () => {
+                Swal.fire({
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    icon: 'error',
+                    confirmButtonColor: 'var(--danger-color)'
+                });
+            });
+        }
+
+        const sweetConfirmDemo = document.getElementById('sweet-confirm-demo');
+        if (sweetConfirmDemo) {
+            sweetConfirmDemo.addEventListener('click', () => {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: 'var(--danger-color)',
+                    cancelButtonColor: 'var(--dark-color)',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        );
+                    }
+                });
+            });
+        }
+
+        // Custom Alerts
+        const sweetHtml = document.getElementById('sweet-html');
+        if (sweetHtml) {
+            sweetHtml.addEventListener('click', () => {
+                Swal.fire({
+                    title: '<strong>HTML <u>example</u></strong>',
+                    icon: 'info',
+                    html:
+                        'You can use <b>bold text</b>, ' +
+                        '<a href="//sweetalert2.github.io">links</a> ' +
+                        'and other HTML tags',
+                    showCloseButton: true,
+                    showCancelButton: true,
+                    focusConfirm: false,
+                    confirmButtonText: '<i class="bx bx-thumbs-up"></i> Great!',
+                    confirmButtonColor: 'var(--main-color)',
+                    cancelButtonText: '<i class="bx bx-thumbs-down"></i>',
+                    cancelButtonColor: 'var(--dark-color)'
+                });
+            });
+        }
+
+        const sweetPosition = document.getElementById('sweet-position');
+        if (sweetPosition) {
+            sweetPosition.addEventListener('click', () => {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Your work has been saved',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    background: '#f8f9fa',
+                    iconColor: 'var(--secondary-color)'
+                });
+            });
+        }
+
+        const sweetImage = document.getElementById('sweet-image');
+        if (sweetImage) {
+            sweetImage.addEventListener('click', () => {
+                Swal.fire({
+                    title: 'FastBase',
+                    text: 'Modal with a custom image.',
+                    imageUrl: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop',
+                    imageWidth: 400,
+                    imageHeight: 200,
+                    imageAlt: 'Custom image',
+                    confirmButtonColor: 'var(--dark-color)'
+                });
+            });
+        }
+
+        const sweetTimer = document.getElementById('sweet-timer');
+        if (sweetTimer) {
+            sweetTimer.addEventListener('click', () => {
+                let timerInterval;
+                Swal.fire({
+                    title: 'Auto close alert!',
+                    html: 'I will close in <b></b> milliseconds.',
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading();
+                        const b = Swal.getHtmlContainer().querySelector('b');
+                        timerInterval = setInterval(() => {
+                            b.textContent = Swal.getTimerLeft();
+                        }, 100);
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval);
+                    }
+                }).then((result) => {
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        console.log('I was closed by the timer');
+                    }
+                });
+            });
+        }
+
+        // Input Types
+        const sweetText = document.getElementById('sweet-text');
+        if (sweetText) {
+            sweetText.addEventListener('click', () => {
+                Swal.fire({
+                    title: 'Enter your name',
+                    input: 'text',
+                    inputAttributes: {
+                        autocapitalize: 'off'
+                    },
+                    showCancelButton: true,
+                    confirmButtonText: 'Submit',
+                    confirmButtonColor: 'var(--main-color)',
+                    cancelButtonColor: 'var(--dark-color)',
+                    showLoaderOnConfirm: true,
+                    preConfirm: (name) => {
+                        if (!name) {
+                            Swal.showValidationMessage('Please enter your name');
+                        }
+                        return name;
+                    },
+                    allowOutsideClick: () => !Swal.isLoading()
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: `Hello, ${result.value}!`,
+                            icon: 'success'
+                        });
+                    }
+                });
+            });
+        }
+
+        const sweetEmail = document.getElementById('sweet-email');
+        if (sweetEmail) {
+            sweetEmail.addEventListener('click', () => {
+                Swal.fire({
+                    title: 'Input email address',
+                    input: 'email',
+                    inputLabel: 'Your email address',
+                    inputPlaceholder: 'Enter your email address',
+                    confirmButtonColor: 'var(--secondary-color)',
+                    showCancelButton: true,
+                    cancelButtonColor: 'var(--dark-color)'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: `Entered email: ${result.value}`,
+                            icon: 'success'
+                        });
+                    }
+                });
+            });
+        }
+
+        const sweetSelect = document.getElementById('sweet-select');
+        if (sweetSelect) {
+            sweetSelect.addEventListener('click', () => {
+                Swal.fire({
+                    title: 'Select a country',
+                    input: 'select',
+                    inputOptions: {
+                        'US': 'United States',
+                        'UK': 'United Kingdom',
+                        'CA': 'Canada',
+                        'AU': 'Australia'
+                    },
+                    inputPlaceholder: 'Select a country',
+                    showCancelButton: true,
+                    confirmButtonColor: 'var(--dark-color)',
+                    cancelButtonColor: 'var(--danger-color)',
+                    inputValidator: (value) => {
+                        return new Promise((resolve) => {
+                            if (value) {
+                                resolve();
+                            } else {
+                                resolve('You need to select a country');
+                            }
+                        });
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        const country = result.value;
+                        const countryName = {
+                            'US': 'United States',
+                            'UK': 'United Kingdom',
+                            'CA': 'Canada',
+                            'AU': 'Australia'
+                        }[country];
+
+                        Swal.fire({
+                            title: `You selected: ${countryName}`,
+                            icon: 'success'
+                        });
+                    }
+                });
+            });
+        }
+    });
+</script>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .component-section {
+        margin-bottom: 3rem;
+        padding-top: 1rem;
+    }
+
+    .component-demo {
+        background-color: #f8f9fa;
+        padding: 2rem;
+        border-radius: 8px;
+        margin-top: 1rem;
+    }
+
+    /* Icons */
+    .icon-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 1rem;
+    }
+
+    .icon-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .icon-item i {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        color: var(--main-color);
+    }
+
+    .icon-item span {
+        font-size: 0.8rem;
+    }
+
+    /* Cards */
+    .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .card {
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+        padding: 1rem;
+        background-color: #f1f1f1;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    .card-footer {
+        padding: 1rem;
+        background-color: #f1f1f1;
+        border-top: 1px solid #ddd;
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.5rem;
+    }
+
+    .card-img {
+        height: 150px;
+        overflow: hidden;
+    }
+
+    .card-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Buttons */
+    .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 1rem;
+    }
+
+    .btn-sm {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
+
+    .btn-lg {
+        padding: 12px 24px;
+        font-size: 1rem;
+    }
+
+    .btn-secondary {
+        background-color: var(--secondary-color);
+    }
+
+    .btn-danger {
+        background-color: var(--danger-color);
+    }
+
+    .btn-dark {
+        background-color: var(--dark-color);
+    }
+
+    .btn-light {
+        background-color: var(--light-color);
+        color: var(--dark-color);
+    }
+
+    .btn-outline {
+        background-color: transparent;
+        border: 2px solid var(--main-color);
+        color: var(--main-color);
+        box-shadow: none;
+    }
+
+    .btn-outline:hover {
+        background-color: var(--main-color);
+        color: white;
+    }
+
+    .btn-rounded {
+        border-radius: 50px;
+    }
+
+    .btn-flat {
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    .btn-flat:hover {
+        box-shadow: none;
+        transform: none;
+        background-color: var(--secondary-color);
+    }
+
+    .btn-icon {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        border-radius: 50%;
+    }
+
+    .btn-icon i {
+        font-size: 1.2rem;
+        margin: 0;
+    }
+
+    .btn-group {
+        display: inline-flex;
+    }
+
+    .btn-group .btn {
+        border-radius: 0;
+        margin: 0;
+    }
+
+    .btn-group .btn:first-child {
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+    }
+
+    .btn-group .btn:last-child {
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+    }
+
+    .btn[disabled] {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    .btn[disabled]:hover {
+        transform: none;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        background: var(--main-color);
+    }
+
+    /* Typography */
+    .code-block {
+        background-color: #2c3e50;
+        color: white;
+        padding: 1rem;
+        border-radius: 4px;
+        margin: 1rem 0;
+    }
+
+    .code-block pre {
+        margin: 0;
+        white-space: pre-wrap;
+    }
+
+    blockquote {
+        border-left: 4px solid var(--main-color);
+        padding-left: 1rem;
+        margin-left: 0;
+        color: #666;
+    }
+
+    /* Alerts */
+    .alert-warning {
+        background-color: #fff3cd;
+        color: #856404;
+        border: 1px solid #ffeeba;
+    }
+
+    .alert-info {
+        background-color: #d1ecf1;
+        color: #0c5460;
+        border: 1px solid #bee5eb;
+    }
+
+    /* Tables */
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 1rem;
+    }
+
+    .table th,
+    .table td {
+        padding: 0.75rem;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .table th {
+        background-color: #f1f1f1;
+        font-weight: 500;
+    }
+
+    .table-striped tbody tr:nth-child(odd) {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    .badge {
+        display: inline-block;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+
+    .badge-success {
+        background-color: var(--secondary-color);
+        color: white;
+    }
+
+    .badge-danger {
+        background-color: var(--danger-color);
+        color: white;
+    }
+
+    .badge-warning {
+        background-color: #f1c40f;
+        color: #856404;
+    }
+
+    /* Forms */
+    .form-container {
+        max-width: 600px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 1rem;
+    }
+
+    .form-check {
+        margin-bottom: 0.5rem;
+    }
+
+    .form-check-input {
+        margin-right: 0.5rem;
+    }
+
+    .form-inline {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    /* Grid System */
+    .grid-example {
+        margin-bottom: 1rem;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+        margin-bottom: 1rem;
+    }
+
+    .col-12, .col-6, .col-4, .col-3, .col-8 {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .col-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .col-8 {
+        flex: 0 0 66.666667%;
+        max-width: 66.666667%;
+    }
+
+    .col-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .col-4 {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
+
+    .col-3 {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+
+    .grid-box {
+        padding: 1rem;
+        background-color: var(--main-color);
+        color: white;
+        text-align: center;
+        border-radius: 4px;
+    }
+
+    /* Modals */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        overflow: auto;
+    }
+
+    .modal-content {
+        background-color: white;
+        margin: 10% auto;
+        width: 80%;
+        max-width: 600px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        animation: modalFadeIn 0.3s;
+    }
+
+    @keyframes modalFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .modal-header {
+        padding: 1rem;
+        border-bottom: 1px solid #ddd;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .modal-body {
+        padding: 1rem;
+    }
+
+    .modal-footer {
+        padding: 1rem;
+        border-top: 1px solid #ddd;
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.5rem;
+    }
+
+    .modal-close {
+        cursor: pointer;
+        font-size: 1.5rem;
+    }
+
+    /* Widgets */
+    .widgets-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .widget {
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .widget-header {
+        padding: 1rem;
+        background-color: #f1f1f1;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .widget-body {
+        padding: 1rem;
+    }
+
+    .widget-footer {
+        padding: 1rem;
+        background-color: #f1f1f1;
+        border-top: 1px solid #ddd;
+        text-align: center;
+    }
+
+    .widget-footer a {
+        color: var(--main-color);
+        text-decoration: none;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .stat-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .stat-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+    }
+
+    .stat-info h4 {
+        margin: 0;
+        font-size: 0.875rem;
+        color: #666;
+    }
+
+    .stat-info p {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+
+    .activity-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .activity-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .activity-item:last-child {
+        border-bottom: none;
+    }
+
+    .activity-icon {
+        width: 36px;
+        height: 36px;
+        background-color: rgba(52, 152, 219, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--main-color);
+    }
+
+    .activity-content p {
+        margin: 0;
+    }
+
+    .activity-time {
+        font-size: 0.75rem;
+        color: #666;
+    }
+
+    /* Charts */
+    .charts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .chart-container {
+        background-color: white;
+        border-radius: 8px;
+        padding: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .chart-container h3 {
+        margin-top: 0;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    /* Calendar */
+    .calendar-container {
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .calendar-header {
+        padding: 1rem;
+        background-color: #f1f1f1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .calendar-body {
+        padding: 1rem;
+    }
+
+    .calendar-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .calendar-table th,
+    .calendar-table td {
+        padding: 0.5rem;
+        text-align: center;
+    }
+
+    .calendar-footer {
+        padding: 1rem;
+        background-color: #f1f1f1;
+        text-align: center;
+    }
+
+    /* Utility Classes */
+    .mt-3 {
+        margin-top: 1rem;
+    }
+
+    .mt-4 {
+        margin-top: 1.5rem;
+    }
+</style>
+{% endblock %}

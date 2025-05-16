@@ -1,0 +1,88 @@
+<!-- Sidebar -->
+<div class="sidebar">
+    <div class="sidebar-header">
+        <h3>Dashboard</h3>
+        <button class="toggle-btn">
+            <i class='bx bx-menu'></i>
+        </button>
+    </div>
+
+    <div class="sidebar-menu">
+        <ul>
+            <li>
+                <a href="/dashboard" class="{% if request.url.path == '/dashboard' %}active{% endif %}">
+                    <i class='bx bxs-dashboard'></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="/profile" class="{% if request.url.path == '/profile' %}active{% endif %}">
+                    <i class='bx bxs-user'></i>
+                    <span>Profile</span>
+                </a>
+            </li>
+            <li>
+                <a href="/activity" class="{% if request.url.path == '/activity' %}active{% endif %}">
+                    <i class='bx bx-history'></i>
+                    <span>Activity Log</span>
+                </a>
+            </li>
+            <li>
+                <a href="/notifications" class="{% if request.url.path == '/notifications' %}active{% endif %}" style="position: relative;">
+                    <i class='bx bx-bell'></i>
+                    <span>Notifications</span>
+                    {% if unread_notification_count is defined and unread_notification_count > 0 %}
+                    <span class="notification-badge">{{ unread_notification_count }}</span>
+                    {% endif %}
+                </a>
+            </li>
+
+            <li>
+                <a href="/components" class="{% if request.url.path == '/components' %}active{% endif %}">
+                    <i class='bx bx-cube'></i>
+                    <span>UI Components</span>
+                </a>
+            </li>
+
+            {% if user is defined and user.is_admin %}
+            <!-- Admin Section (only visible to admin users) -->
+            <li class="sidebar-divider">
+                <span>Admin</span>
+            </li>
+            <li>
+                <a href="/admin/dashboard" class="{% if request.url.path == '/admin/dashboard' %}active{% endif %}">
+                    <i class='bx bxs-crown'></i>
+                    <span>Admin Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="/admin/users" class="{% if '/admin/users' in request.url.path %}active{% endif %}">
+                    <i class='bx bxs-user-detail'></i>
+                    <span>Manage Users</span>
+                </a>
+            </li>
+            <li>
+                <a href="/admin/create-admin" class="{% if request.url.path == '/admin/create-admin' %}active{% endif %}">
+                    <i class='bx bxs-user-plus'></i>
+                    <span>Create Admin</span>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+
+    <div class="sidebar-footer">
+        <a href="/auth/logout" style="color: var(--danger-color); display: flex; align-items: center;">
+            <i class='bx bx-log-out' style="margin-right: 10px;"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+</div>
+
+<!-- Mobile toggle button -->
+<div class="mobile-toggle">
+    <i class='bx bx-menu'></i>
+</div>
+
+<!-- Overlay for mobile -->
+<div class="sidebar-overlay"></div>
